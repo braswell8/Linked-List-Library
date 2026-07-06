@@ -4,7 +4,8 @@ using namespace std;
 
 int main() {
 
-    LinkedList();
+    LinkedList myList;
+    int num = 0;
     cout << "==============================================================" << endl;
     cout << "                 Library Management System" << endl;
     cout << "==============================================================" << endl;
@@ -16,6 +17,41 @@ int main() {
     cout << " Please select a choice from one of the 8 above using a number" << endl;
     cout << "==============================================================" << endl;
     cout << endl;
-    
-    
+    while(num != 9){
+        cout << "Select a number, if you want to erase your library/stop enter the number 9" << endl;
+        cin >> num;
+        switch (num){
+            case 1:
+                myList.addBook();
+            break;
+            case 2:
+                myList.removeBook();
+            break;
+            case 3:
+                myList.bookSearch();
+            break;
+            case 4:
+                myList.checkOut();
+            break;
+            case 5:
+                myList.returnBook();
+            break;
+            case 6:
+                myList.showAllBooks(); 
+            break;
+            case 7:
+                myList.showAvailable();
+            break;
+            case 8:
+                myList.countTotal();
+            break;
+            case 9:
+                cout << "Your program is ending" << endl;
+            break;
+            default:
+                cout << "Invalid option. Please try again." << endl;
+                break;
+        }
+    }
+    return 0;
 }
