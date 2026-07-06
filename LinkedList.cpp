@@ -8,6 +8,8 @@ using namespace std;
         int year;
         int isbn;
 
+        cin.ignore();
+
         cout << "Enter the name of your new book" << endl;
         getline(cin, title);
         
@@ -20,7 +22,7 @@ using namespace std;
         cout << "Enter the ISBN of your new book" << endl;
         cin >> isbn;
 
-        Book* newbook = new Book(title, author, year, isbn);
+        Book* newbook = new Book(title, author, isbn, year);
 
         if (head == nullptr){
             head = newbook;
@@ -34,7 +36,7 @@ using namespace std;
         }
 
         current->next = newbook;
-        
+
     }
     void LinkedList::removeBook(){
         int isbn;
@@ -72,13 +74,14 @@ using namespace std;
         cin >> isbn;
 
         Book* current = head;
+
         while (current != nullptr) {
             if (current->ISBN == isbn){
                 cout << "Title: " + current->title << endl;
                 cout << "Author: " + current->author << endl;
-                cout << "Yearpublished: " << current->yearPublished << endl;
+                cout << "yearPublished: " << current->yearPublished << endl;
                 
-                cout << "Checkedout: ";
+                cout << "checkedOut: ";
                 if (current->checkedOut){
                     cout << "Yes";
                 } else {
@@ -131,7 +134,7 @@ using namespace std;
     void LinkedList::showAllBooks(){
         
         Book* current = head;
-        cout << "retreiving all library books..." << endl;
+        cout << "retrieving all library books..." << endl;
         if (current == nullptr){
             cout << "There are no books in the library right now" << endl;
             return;
