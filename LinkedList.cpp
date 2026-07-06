@@ -73,10 +73,10 @@ using namespace std;
 
         Book* current = head;
         while (current != nullptr) {
-            if (current->ISBN = isbn){
+            if (current->ISBN == isbn){
                 cout << "Title: " + current->title << endl;
                 cout << "Author: " + current->author << endl;
-                cout << "Yearpublished: " + current->yearPublished << endl;
+                cout << "Yearpublished: " << current->yearPublished << endl;
                 
                 cout << "Checkedout: ";
                 if (current->checkedOut){
@@ -91,19 +91,83 @@ using namespace std;
         cout << "Book not found";
     }
     void LinkedList::checkOut(){
+        int isbn;
+        cout << "enter the ISBN number of the book to check out" << endl;
+        cin >> isbn;
 
+        Book* current = head;
+
+        while (current != nullptr){
+            if (current->ISBN == isbn){
+                if (current->checkedOut){
+                    cout << "Book is already checked out" << endl;
+                } else {
+                    current->checkedOut = true;
+                    cout << "You have checked out your book" << endl;
+                }
+                return;
+            }
+            current = current->next;
+        }
+        cout << "Book doesnt exist" << endl;
     }
     void LinkedList::returnBook(){
+        int isbn;
+        cout << "Please enter the isbn number of the book you'd like to return" << endl;
+        cin >> isbn;
 
+        Book* current = head;
+
+        while (current != nullptr){
+            if (current->ISBN == isbn){
+                current->checkedOut = false;
+                cout << "Your book has been returned" << endl;
+                return;
+            } 
+            current = current->next;
+        }
+        cout << "Sorry, we dont recognize this isbn number" << endl;
     }
     void LinkedList::showAllBooks(){
-
+        
+        Book* current = head;
+        cout << "retreiving all library books..." << endl;
+        if (current == nullptr){
+            cout << "There are no books in the library right now" << endl;
+            return;
+        }
+        
+        while (current != nullptr){
+            cout << current->title << endl;
+            current = current->next;
+        }
     }
     void LinkedList::showAvailable(){
+        
+        cout << "Here is a list of all available books" << endl;
+        Book* current = head;
 
+        if (current == nullptr){
+            cout << "There are no books in the library" << endl;
+            return;
+        }
+        while (current != nullptr){
+            if (current->checkedOut == false){
+                cout << current->title << endl;
+            }
+            current = current->next;
+        }
     }
     void LinkedList::countTotal() {
+        int count = 0;
+        Book* current = head;
+        
+        while(current != nullptr){
+            count++;
+            current = current->next;
 
+        }
+        cout << count << endl;
     }
 
     LinkedList::LinkedList() {
